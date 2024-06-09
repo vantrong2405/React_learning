@@ -3,17 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Clock from './Clock';
 import { useState } from 'react';
-
+import BareInput from './BareInput';
+import Layout from './Layout';
 function App() {
-    const [name, setName] = useState('Sara')
-    const [visible, setVisible] = useState(true)
-    return (
-        <div>
-            {visible && <Clock name={name} />}
-            <button onClick={() => setName('văn trọng')}>Change name</button>
-            <button onClick={() => setVisible((prev) => !prev)}>Change visible</button>
-        </div >
 
+    return (
+        <Layout>
+            <BareInput type='1' value='123' autoFocus />
+        </Layout>
     );
 }
 
