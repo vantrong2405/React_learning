@@ -2,15 +2,16 @@
 /* eslint-disable no-unused-vars */
 import logo from './logo.svg';
 import './App.css';
-import Clock from './Clock';
-import { useState } from 'react';
 import Layout from './Layout';
-import Main from './ThinkingReact/Main';
+import Style from './Style.module.css'
 function App() {
 
     return (
         <Layout>
-            <Main />
+            <div className={Style.items}>
+                123
+            </div>
+
         </Layout>
     );
 }
