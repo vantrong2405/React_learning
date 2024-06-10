@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Layout from './Layout';
 import Style from './Style.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function App() {
     const [people, setPeople] = useState({
         name: 'trọng',
@@ -25,6 +25,28 @@ function App() {
             }
         }))
     }
+    useEffect(() => {
+        // giống didupdate khi dòng 35 có tham số , và nó quan sát sự thay đổi của people
+        console.log(people);
+        return () => {
+            // Chạy sau khi hủy *( hay còn gọi là clean up)
+            console.log('Giống componentWillMount');
+        }
+    }, [people])
+
+    useEffect(() => {
+        // khi 1 components được update , nó chạy
+        console.log('Giống componentDidUpdate ');
+    })
+
+    useEffect(() => {
+        // Chạy sau khi re-render ,
+        console.log('Giống componentDidMount ');
+    }, [])
+
+
+
+    console.log('render');
     return (
         <Layout>
             <div>Name : {people.name}</div>
