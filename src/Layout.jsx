@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Layout extends Component {
-    render() {
-        console.log(this);
+  render() {
     return (
-      <div className='layout'>{this.props.children}</div>
-    )
+      <div className="layout">
+        {this.props.children}
+      </div>
+    );
   }
 }

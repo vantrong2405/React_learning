@@ -5,12 +5,12 @@ import Clock from './Clock';
 import { useState } from 'react';
 import BareInput from './BareInput';
 import Layout from './Layout';
-import ButtonLogin from './ButtonLogin';
+import ProductList from './ProductList';
 function App() {
 
     return (
         <Layout>
-            <ButtonLogin />
+            <ProductList />
         </Layout>
     );
 }
