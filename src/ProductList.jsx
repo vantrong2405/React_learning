@@ -1,44 +1,50 @@
-import React, { Component } from "react";
-import Item from "./Item";
+import { logRoles } from "@testing-library/react";
+import React, { Component, createRef } from "react";
+
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
 
+    // this.inputFile = createRef();
     this.state = {
-      productList: [
-        { id: "1a", name: "Sam sung", phone: "0937572917" },
-        { id: "2b", name: "Apple", phone: "0937572917" },
-        { id: "3c", name: "Xiaomi", phone: "0937572917" }
-      ]
+      selectedFile: null
     };
+    this.handleUploadFile = this.handleUploadFile.bind(this);
   }
 
-  handleClickArrange = () => {
-    this.setState(prevState => ({
-      productList: prevState.productList.sort((a, b) => {
-        if (a.name > b.name) return 1;
-        else if (a.name < b.name) return -1;
-        else return 0;
-      })
-    }));
-  };
-  handleAddProduct = () => {
-    this.setState(prevState => ({
-      productList: [
-        { id: "4d", name: "máy tính bảng", phone: "0937572917" },
-        ...prevState.productList
-      ]
-    }));
+  handleUploadFile(e) {
+    console.log(e.target.files[0]);
+    this.setState({
+      selectedFile: e.target.files[0]
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.selectedFile) {
+      const formData = new FormData();
+      formData.append(
+        "myFile",
+        this.state.selectedFile,
+        this.state.selectedFile.name
+      );
+      console.log(formData);
+    }
+
+    console.log(this.state.selectedFile);
   };
   render() {
-    console.log(this.state.productList);
     return (
       <div>
-        <button onClick={this.handleClickArrange}>Sort ngay</button>
-        <button onClick={this.handleAddProduct}>Add product</button>
-        {this.state.productList.map((product, index) =>
-          <Item product={product} key={index} />
-        )}
+        <form action="" onSubmit={this.handleSubmit}>
+          <input
+            type="file"
+            name=""
+            // ref={this.inputFile}
+            onChange={this.handleUploadFile}
+          />
+          <input type="submit" defaultValue={"Submit"} />
+        </form>
       </div>
     );
   }
